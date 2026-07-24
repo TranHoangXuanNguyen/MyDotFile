@@ -5,7 +5,7 @@
 # ==============================================================================
 
 # ------------------------------------------------------
-# Màu sắc (Colors for UI)
+# Colors for UI
 # ------------------------------------------------------
 CR="\e[0;31m"
 CG="\e[0;32m"
@@ -15,7 +15,7 @@ CC="\e[0;36m"
 C0="\e[0m"
 BOLD="\e[1m"
 
-# Tiền tố (Prefixes)
+# Prefixes
 OK="[${CG}${BOLD} OK ${C0}]"
 ERR="[${CR}${BOLD} ERROR ${C0}]"
 NOTE="[${CC}${BOLD} NOTE ${C0}]"
@@ -35,74 +35,74 @@ echo " |  _  | |_| | |_) | |  | | (_| | | | | (_| |"
 echo " |_| |_|\__, | .__/|_|  |_|\__,_|_| |_|\__,_|"
 echo "        |___/|_|                             "
 echo -e "${C0}"
-echo -e "${CC}Chào mừng đến với trình cài đặt Dotfiles tự động!${C0}"
-echo -e "${NOTE} Script này sẽ giúp bạn thiết lập hệ thống nhanh chóng.\n"
+echo -e "${CC}Welcome to the Automated Dotfiles Installer!${C0}"
+echo -e "${NOTE} This script will help you set up your system quickly.\n"
 
 sleep 1
 
 # ------------------------------------------------------
-# 1. Hàm kiểm tra và cài đặt Yay (AUR Helper)
+# 1. Check and Install Yay (AUR Helper)
 # ------------------------------------------------------
 install_yay() {
     if command -v yay &> /dev/null; then
-        echo -e "${OK} Yay đã được cài đặt."
+        echo -e "${OK} Yay is already installed."
     else
-        echo -e "${WARN} Yay chưa được cài đặt. Đang tiến hành cài đặt yay..."
+        echo -e "${WARN} Yay is not installed. Installing yay now..."
         sudo pacman -S --needed --noconfirm base-devel git
         git clone https://aur.archlinux.org/yay-bin.git /tmp/yay-bin
         cd /tmp/yay-bin && makepkg -si --noconfirm
         cd "$DOTFILES_DIR"
-        echo -e "${OK} Cài đặt Yay thành công!"
+        echo -e "${OK} Yay installed successfully!"
     fi
 }
 
 # ------------------------------------------------------
-# 2. Cài đặt Packages
+# 2. Install Packages
 # ------------------------------------------------------
-echo -e "${ACT} Bạn có muốn cài đặt các gói phần mềm hệ thống không? (y/n)"
+echo -e "${ACT} Do you want to install the required system packages? (y/n)"
 read -p ">> " INST_PKG
 
 if [[ "$INST_PKG" =~ ^[Yy]$ ]]; then
-    echo -e "\n${NOTE} Đang đồng bộ kho lưu trữ pacman..."
+    echo -e "\n${NOTE} Synchronizing pacman databases..."
     sudo pacman -Sy
     
-    echo -e "\n${ACT} Đang cài đặt các gói từ Pacman..."
+    echo -e "\n${ACT} Installing packages from Pacman..."
     sudo pacman -S --needed - < "$DOTFILES_DIR/packages-pacman.txt"
     
     install_yay
     
-    echo -e "\n${ACT} Đang cài đặt các gói từ AUR..."
+    echo -e "\n${ACT} Installing packages from AUR..."
     yay -S --needed - < "$DOTFILES_DIR/packages-aur.txt"
     
-    echo -e "${OK} Hoàn tất cài đặt phần mềm!"
+    echo -e "${OK} Package installation complete!"
 else
-    echo -e "${NOTE} Bỏ qua phần cài đặt phần mềm."
+    echo -e "${NOTE} Skipping package installation."
 fi
 
 # ------------------------------------------------------
-# 3. Quản lý cấu hình (Backup & Symlink)
+# 3. Manage Configurations (Backup & Symlink)
 # ------------------------------------------------------
-echo -e "\n${ACT} Bắt đầu tiến trình thiết lập cấu hình (Configs)..."
+echo -e "\n${ACT} Starting configuration setup..."
 mkdir -p "$BACKUP_DIR"
 
-# Tạo danh sách các thư mục cần cài đặt
+# Loop through all items in the configs directory
 for item in "$DOTFILES_DIR/configs/"*; do
     if [ -d "$item" ] || [ -f "$item" ]; then
         target_name=$(basename "$item")
         target_path="$CONFIG_DIR/$target_name"
 
-        # Backup nếu đã tồn tại
+        # Backup if it already exists
         if [ -e "$target_path" ] || [ -L "$target_path" ]; then
-            echo -e "${NOTE} Đã tìm thấy cấu hình cũ của ${CY}$target_name${C0}. Đang sao lưu..."
+            echo -e "${NOTE} Found existing config for ${CY}$target_name${C0}. Backing up..."
             mv "$target_path" "$BACKUP_DIR/"
         fi
         
         # Symlink
-        echo -e "${OK} Đang liên kết: ${CG}$target_name${C0}"
+        echo -e "${OK} Symlinking: ${CG}$target_name${C0}"
         ln -s "$item" "$target_path"
     fi
 done
 
-echo -e "\n${OK} ${CG}${BOLD}CÀI ĐẶT THÀNH CÔNG!${C0}"
-echo -e "${NOTE} Cấu hình cũ của bạn đã được sao lưu tại: ${CY}$BACKUP_DIR${C0}"
-echo -e "${NOTE} Hãy khởi động lại máy tính (Reboot) để áp dụng toàn bộ thay đổi.\n"
+echo -e "\n${OK} ${CG}${BOLD}INSTALLATION SUCCESSFUL!${C0}"
+echo -e "${NOTE} Your old configurations have been backed up to: ${CY}$BACKUP_DIR${C0}"
+echo -e "${NOTE} Please reboot your system to apply all changes.\n"
