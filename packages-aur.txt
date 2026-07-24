@@ -1,0 +1,5 @@
+wlogout
+swappy
+ttf-meslo-nerd-font-powerlevel10k
+nwg-look
+nwg-displays
