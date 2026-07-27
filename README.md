@@ -9,8 +9,8 @@ Welcome to my personal dotfiles repository for Arch Linux with the Hyprland wind
 - **Bar:** Waybar
 - **Terminal:** Kitty
 - **Launcher:** Rofi / Look
-- **Shell:** Zsh / Fish + Starship
-- **Editor:** Neovim / Vim
+- **Shell:** Zsh + Starship
+- **Editor:** Neovim
 - **Keyboard / Input:** Fcitx5
 - **Notification:** Swaync
 
