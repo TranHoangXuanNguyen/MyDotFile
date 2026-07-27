@@ -111,6 +111,10 @@ keymap.set("n", "<leader>cd", "<cmd>lcd %:p:h<cr><cmd>pwd<cr>", { desc = "change
 -- Use Esc to quit builtin terminal
 keymap.set("t", "<Esc>", [[<c-\><c-n>]])
 
+-- Open terminal in horizontal split using Ctrl + `
+keymap.set("n", "<C-`>", "<cmd>split | terminal<CR>", { desc = "Open terminal" })
+keymap.set("t", "<C-`>", "<cmd>close<CR>", { desc = "Close terminal" })
+
 -- Toggle spell checking
 keymap.set("n", "<F11>", "<cmd>set spell!<cr>", { desc = "toggle spell" })
 keymap.set("i", "<F11>", "<c-o><cmd>set spell!<cr>", { desc = "toggle spell" })
