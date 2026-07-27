@@ -182,10 +182,10 @@ keymap.set("n", "gB", '<cmd>call buf_utils#GoToBuffer(v:count, "backward")<cr>',
 })
 
 -- Switch windows
-keymap.set("n", "<left>", "<c-w>h")
-keymap.set("n", "<Right>", "<C-W>l")
-keymap.set("n", "<Up>", "<C-W>k")
-keymap.set("n", "<Down>", "<C-W>j")
+keymap.set("n", "<Left>", "<C-w>h")
+keymap.set("n", "<Right>", "<C-w>l")
+keymap.set("n", "<Up>", "<C-w>k")
+keymap.set("n", "<Down>", "<C-w>j")
 
 -- Text objects for URL
 keymap.set({ "x", "o" }, "iu", "<cmd>call text_obj#URL()<cr>", { desc = "URL text object" })
