@@ -145,5 +145,68 @@ return {
             vim.g.gruvbox_material_enable_italic = 1
         end,
     },
+    {
+        "craftzdog/solarized-osaka.nvim",
+        lazy = true,
+        opts = {
+            transparent = false,
+            terminal_colors = true,
+            styles = {
+                comments = { italic = true },
+                keywords = { italic = false },
+                sidebars = "dark",
+                floats = "dark",
+            },
+        },
+    },
+    {
+        "Mofiqul/dracula.nvim",
+        lazy = true,
+        opts = {
+            italic_comment = true,
+            transparent_bg = false,
+        },
+    },
+    {
+        "tanvirtin/monokai.nvim",
+        lazy = true,
+        opts = {},
+    },
+    {
+        "marko-cerovac/material.nvim",
+        lazy = true,
+        config = function()
+            vim.g.material_style = "deep ocean"
+            require("material").setup({
+                contrast = {
+                    terminal = false,
+                    sidebars = false,
+                    floating_windows = false,
+                    non_current_windows = false,
+                },
+                styles = {
+                    comments = { italic = true },
+                    keywords = { italic = false },
+                },
+                plugins = {
+                    "gitsigns",
+                    "telescope",
+                    "which-key",
+                },
+            })
+        end,
+    },
+    {
+        "nyoom-engineering/oxocarbon.nvim",
+        lazy = true,
+    },
+    {
+        "kvrohit/mellow.nvim",
+        lazy = true,
+    },
+    {
+        "savq/melange-nvim",
+        lazy = true,
+    },
 }
 

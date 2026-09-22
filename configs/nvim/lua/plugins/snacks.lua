@@ -18,11 +18,30 @@ return {
         { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
         { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal", mode = { "n", "t" } },
         { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore", mode = { "n", "t" } },
-        { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse", mode = { "n", "v" } },
-        { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
-        { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History" },
-        { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
-        { "<leader>gl", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
+        { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse (open in browser)", mode = { "n", "v" } },
+        { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit: Current File History" },
+        { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit: Open" },
+        { "<leader>gl", function() Snacks.lazygit.log() end, desc = "Lazygit: Log (cwd)" },
+        {
+            "<leader>H",
+            function()
+                Snacks.win({
+                    file = vim.fn.stdpath("config") .. "/docs/cheatsheet.md",
+                    width = 0.8,
+                    height = 0.85,
+                    wo = {
+                        spell = false,
+                        wrap = false,
+                        signcolumn = "no",
+                        statuscolumn = " ",
+                        conceallevel = 3,
+                        filetype = "markdown",
+                    },
+                    bo = { filetype = "markdown" },
+                })
+            end,
+            desc = "📖 Cheatsheet",
+        },
         {
             "<leader>N",
             desc = "Neovim News",

@@ -181,6 +181,25 @@ keymap.set("n", "gB", '<cmd>call buf_utils#GoToBuffer(v:count, "backward")<cr>',
   desc = "go to buffer (backward)",
 })
 
+-- Cycle through buffers with Tab / Shift-Tab
+keymap.set("n", "<Tab>", "<cmd>bnext<cr>", { silent = true, desc = "next buffer" })
+keymap.set("n", "<S-Tab>", "<cmd>bprevious<cr>", { silent = true, desc = "prev buffer" })
+
+-- Jump to buffer by position (1-9) with <leader>1 … <leader>9
+for i = 1, 9 do
+  keymap.set("n", "<leader>" .. i, function()
+    local bufs = vim.tbl_filter(function(b)
+      return vim.api.nvim_get_option_value("buflisted", { buf = b })
+    end, vim.api.nvim_list_bufs())
+    table.sort(bufs)
+    if bufs[i] then
+      vim.api.nvim_set_current_buf(bufs[i])
+    else
+      vim.notify("Buffer " .. i .. " does not exist", vim.log.levels.WARN)
+    end
+  end, { silent = true, desc = "go to buffer " .. i })
+end
+
 -- Switch windows
 keymap.set("n", "<Left>", "<C-w>h")
 keymap.set("n", "<Right>", "<C-w>l")

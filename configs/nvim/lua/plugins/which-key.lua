@@ -27,10 +27,10 @@ return {
         preset = "modern",
         delay = 150,
         spec = {
-            { "<leader>a", group = "AI (Copilot)" },
             { "<leader>f", group = "Find (Telescope)" },
             { "<leader>l", group = "LSP" },
             { "<leader>g", group = "Git" },
+            { "<leader>gt", group = "Git Toggle" },
             { "<leader>u", group = "UI" },
             { "<leader>uc", group = "Completion" },
             { "<leader>um", group = "Markdown" },
@@ -48,6 +48,15 @@ return {
             { "<leader>uth", icon = { icon = "", hl = "ThemeIconGithub" } },
             { "<leader>utv", icon = { icon = "", hl = "ThemeIconVSCode" } },
             { "<leader>utm", icon = { icon = "󰔉", hl = "ThemeIconGruvboxMaterial" } },
+            { "<leader>ut1", icon = { icon = "", hl = "ThemeIconSolarized" } },
+            { "<leader>ut2", icon = { icon = "", hl = "ThemeIconDracula" } },
+            { "<leader>ut3", icon = { icon = "", hl = "ThemeIconMonokai" } },
+            { "<leader>ut4", icon = { icon = "󰏗", hl = "ThemeIconMaterial" } },
+            { "<leader>ut5", icon = { icon = "󰆄", hl = "ThemeIconOxocarbon" } },
+            { "<leader>ut6", icon = { icon = "󰄛", hl = "ThemeIconMellow" } },
+            { "<leader>ut7", icon = { icon = "󱥚", hl = "ThemeIconMelange" } },
+            -- Light theme group
+            { "<leader>uT",  group = "Light Themes ☀️" },
             { "<leader>x", group = "Tools" },
             { "<leader>q", group = "Quit" },
             { "<leader>w", group = "Write" },
@@ -74,60 +83,40 @@ return {
             desc = "Buffer Local Keymaps (which-key)",
         },
         {
-            "<leader>ap",
-            function()
-                local ok, chat = pcall(require, "CopilotChat")
-                if not ok then
-                    return
-                end
-                local previous = vim.opt.splitright:get()
-                vim.opt.splitright = true
-                chat.toggle()
-                vim.opt.splitright = previous
-            end,
-            desc = "CopilotChat: Toggle Right Panel",
-        },
-        {
-            "<leader>ao",
-            function()
-                local ok, chat = pcall(require, "CopilotChat")
-                if not ok then
-                    return
-                end
-                local previous = vim.opt.splitright:get()
-                vim.opt.splitright = true
-                chat.open()
-                vim.opt.splitright = previous
-            end,
-            desc = "CopilotChat: Open Right Panel",
-        },
-        {
-            "<leader>ac",
-            "<cmd>CopilotChatClose<CR>",
-            desc = "CopilotChat: Close Panel",
-        },
-        {
-            "<leader>ar",
-            "<cmd>CopilotChatReset<CR>",
-            desc = "CopilotChat: Reset Chat",
-        },
-        {
-            "<leader>as",
-            "<cmd>CopilotChatStop<CR>",
-            desc = "CopilotChat: Stop Response",
-        },
-        {
-            "<leader>aa",
-            "<cmd>Copilot auth<CR>",
-            desc = "Copilot: Authenticate",
-        },
-        {
             "<leader>utp",
             function()
                 require("ui_theme").use_pywal()
             end,
             desc = "Theme: Full Pywal",
         },
+        -- 7 dark themes mới
+        { "<leader>ut1", function() require("ui_theme").apply_theme("solarized-osaka") end, desc = "Theme: Solarized Osaka" },
+        { "<leader>ut2", function() require("ui_theme").apply_theme("dracula") end,          desc = "Theme: Dracula" },
+        { "<leader>ut3", function() require("ui_theme").apply_theme("monokai") end,          desc = "Theme: Monokai" },
+        { "<leader>ut4", function() require("ui_theme").apply_theme("material") end,         desc = "Theme: Material" },
+        { "<leader>ut5", function() require("ui_theme").apply_theme("oxocarbon") end,        desc = "Theme: Oxocarbon" },
+        { "<leader>ut6", function() require("ui_theme").apply_theme("mellow") end,           desc = "Theme: Mellow" },
+        { "<leader>ut7", function() require("ui_theme").apply_theme("melange") end,          desc = "Theme: Melange" },
+        -- ☀️ Light themes
+        { "<leader>uT1", function() require("ui_theme").apply_theme("tokyonight-day") end,   desc = "Light: Tokyo Day" },
+        { "<leader>uT2", function() require("ui_theme").apply_theme("catppuccin-latte") end, desc = "Light: Catppuccin Latte" },
+        { "<leader>uT3", function() require("ui_theme").apply_theme("rose-pine-dawn") end,   desc = "Light: Rose Pine Dawn" },
+        { "<leader>uT4", function() require("ui_theme").apply_theme("kanagawa-lotus") end,   desc = "Light: Kanagawa Lotus" },
+        { "<leader>uT5", function() require("ui_theme").apply_theme("github_light") end,     desc = "Light: Github Light" },
+        { "<leader>uT6", function() require("ui_theme").apply_theme("dayfox") end,           desc = "Light: Dayfox" },
+        { "<leader>uT7", function() require("ui_theme").apply_theme("dawnfox") end,          desc = "Light: Dawnfox" },
+        { "<leader>uT8", function()
+            vim.o.background = "light"
+            require("ui_theme").apply_theme("everforest")
+        end, desc = "Light: Everforest" },
+        { "<leader>uT9", function()
+            vim.o.background = "light"
+            require("ui_theme").apply_theme("gruvbox")
+        end, desc = "Light: Gruvbox" },
+        { "<leader>uT0", function()
+            vim.o.background = "light"
+            require("ui_theme").apply_theme("vscode")
+        end, desc = "Light: VSCode Light" },
         {
             "<leader>ff",
             function()

@@ -151,6 +151,96 @@ function M.init()
         M.apply_theme("gruvbox-material")
     end, { desc = "Switch full theme to gruvbox material" })
 
+    vim.api.nvim_create_user_command("ThemeFileSolarizedOsaka", function()
+        M.apply_theme("solarized-osaka")
+    end, { desc = "Switch full theme to solarized-osaka" })
+
+    vim.api.nvim_create_user_command("ThemeFileDracula", function()
+        M.apply_theme("dracula")
+    end, { desc = "Switch full theme to dracula" })
+
+    vim.api.nvim_create_user_command("ThemeFileMonokai", function()
+        M.apply_theme("monokai")
+    end, { desc = "Switch full theme to monokai" })
+
+    vim.api.nvim_create_user_command("ThemeFileMaterial", function()
+        M.apply_theme("material")
+    end, { desc = "Switch full theme to material (deep ocean)" })
+
+    vim.api.nvim_create_user_command("ThemeFileOxocarbon", function()
+        M.apply_theme("oxocarbon")
+    end, { desc = "Switch full theme to oxocarbon" })
+
+    vim.api.nvim_create_user_command("ThemeFileMellow", function()
+        M.apply_theme("mellow")
+    end, { desc = "Switch full theme to mellow" })
+
+    vim.api.nvim_create_user_command("ThemeFileMelange", function()
+        M.apply_theme("melange")
+    end, { desc = "Switch full theme to melange" })
+
+    -- ── LIGHT THEMES ──────────────────────────────────────────────────────────
+    vim.api.nvim_create_user_command("ThemeLightTokyoDay", function()
+        M.apply_theme("tokyonight-day")
+    end, { desc = "Light: tokyonight day" })
+
+    vim.api.nvim_create_user_command("ThemeLightCatppuccinLatte", function()
+        M.apply_theme("catppuccin-latte")
+    end, { desc = "Light: catppuccin latte" })
+
+    vim.api.nvim_create_user_command("ThemeLightRosePineDawn", function()
+        M.apply_theme("rose-pine-dawn")
+    end, { desc = "Light: rose-pine dawn" })
+
+    vim.api.nvim_create_user_command("ThemeLightKanagawaLotus", function()
+        M.apply_theme("kanagawa-lotus")
+    end, { desc = "Light: kanagawa lotus" })
+
+    vim.api.nvim_create_user_command("ThemeLightGithub", function()
+        M.apply_theme("github_light")
+    end, { desc = "Light: github light" })
+
+    vim.api.nvim_create_user_command("ThemeLightGithubDefault", function()
+        M.apply_theme("github_light_default")
+    end, { desc = "Light: github light default" })
+
+    vim.api.nvim_create_user_command("ThemeLightVSCode", function()
+        vim.o.background = "light"
+        M.apply_theme("vscode")
+    end, { desc = "Light: vscode light" })
+
+    vim.api.nvim_create_user_command("ThemeLightDayfox", function()
+        M.apply_theme("dayfox")
+    end, { desc = "Light: dayfox (nightfox)" })
+
+    vim.api.nvim_create_user_command("ThemeLightDawnfox", function()
+        M.apply_theme("dawnfox")
+    end, { desc = "Light: dawnfox (nightfox)" })
+
+    vim.api.nvim_create_user_command("ThemeLightEverforest", function()
+        vim.o.background = "light"
+        M.apply_theme("everforest")
+    end, { desc = "Light: everforest light" })
+
+    vim.api.nvim_create_user_command("ThemeLightGruvbox", function()
+        vim.o.background = "light"
+        M.apply_theme("gruvbox")
+    end, { desc = "Light: gruvbox light" })
+
+    vim.api.nvim_create_user_command("ThemeLightGruvboxMaterial", function()
+        vim.o.background = "light"
+        M.apply_theme("gruvbox-material")
+    end, { desc = "Light: gruvbox material light" })
+
+    vim.api.nvim_create_user_command("ThemeLightSolarizedOsaka", function()
+        M.apply_theme("solarized-osaka-day")
+    end, { desc = "Light: solarized osaka day" })
+
+    vim.api.nvim_create_user_command("ThemeLightMelange", function()
+        vim.o.background = "light"
+        M.apply_theme("melange")
+    end, { desc = "Light: melange light" })
+
     vim.api.nvim_create_autocmd("ColorScheme", {
         group = vim.api.nvim_create_augroup("ui-theme-refresh-bars", { clear = true }),
         callback = function()
