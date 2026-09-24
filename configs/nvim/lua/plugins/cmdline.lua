@@ -9,7 +9,11 @@ return {
         "rcarriga/nvim-notify",
     },
     config = function()
-        vim.cmd("source ~/.cache/wal/colors-wal.vim")
+        -- Guard: chỉ load màu wal nếu file tồn tại
+        local wal_file = vim.fn.expand("~/.cache/wal/colors-wal.vim")
+        if vim.fn.filereadable(wal_file) == 1 then
+            vim.cmd("source " .. wal_file)
+        end
         local color9 = vim.g.color9 or "#808080"
         local color5 = vim.g.color5 or "#ffffff"
         require("noice").setup({
@@ -28,11 +32,11 @@ return {
                 lsp_doc_border = false,
             },
         })
-        vim.cmd('highlight NoiceCmdlineIcon guifg=' .. color9)
-        vim.cmd('highlight NoiceCmdlinePopupBorder guifg=' .. color5)
-        vim.cmd('highlight NotifyINFOBorder guifg=' .. color5)
-        vim.cmd('highlight NotifyINFOIcon guifg=' .. color9)
-        vim.cmd('highlight NotifyINFOTitle guifg=' .. color5)
+        vim.cmd("highlight NoiceCmdlineIcon guifg=" .. color9)
+        vim.cmd("highlight NoiceCmdlinePopupBorder guifg=" .. color5)
+        vim.cmd("highlight NotifyINFOBorder guifg=" .. color5)
+        vim.cmd("highlight NotifyINFOIcon guifg=" .. color9)
+        vim.cmd("highlight NotifyINFOTitle guifg=" .. color5)
     end,
 }
 

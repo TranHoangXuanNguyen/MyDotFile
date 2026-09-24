@@ -23,7 +23,6 @@
 
 "modules-left": [
 	"custom/menu",
-	"custom/light_dark",
 	"custom/separator#dot-line",
 	"power-profiles-daemon",
 	"group/mobo_drawer",
@@ -42,20 +41,14 @@
 	"hyprland/workspaces#kanji",
 	"custom/separator#dot-line",
 	"idle_inhibitor",	
-	"custom/hint",	
 	], 
 
 "modules-right": [
-	"network#speed",
-	"group/connections",
 	"custom/separator#line",
 	"tray",
 	"mpris", 
 	"group/audio",
 	"custom/separator#line",
-	"keyboard-state",
-	"custom/keyboard",
-	"custom/lock",
 	"custom/power",
 	],
 }

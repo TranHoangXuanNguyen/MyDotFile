@@ -21,6 +21,7 @@ window#waybar {
 tooltip {
   background: @base;
   opacity: 1;
+  color: @text;
   border-radius: 10px;
   border-width: 2px;
   border-style: solid;
@@ -33,7 +34,7 @@ tooltip label {
 
 #taskbar button,
 #workspaces button {
-  color: @surface2;
+  color: @text;
   background-color: transparent;
   	padding-top: 4px;
 	padding-bottom: 4px;
@@ -50,20 +51,20 @@ tooltip label {
 #workspaces button.focused {
   color: @rosewater;
   background: transparent;
-  border-radius: 15px;
+  border-radius: 0;
 }
 
 #workspaces button.urgent {
   color: #11111b;
   background: transparent;
-  border-radius: 15px;
+  border-radius: 0;
 }
 
 #taskbar button:hover,
 #workspaces button:hover {
   background: transparent;
   color: @flamingo;
-  border-radius: 15px;
+  border-radius: 0;
 }
 
 #backlight,
@@ -125,6 +126,7 @@ tooltip label {
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
   opacity: 1;
+  color: @text;
   padding-top: 4px;
   padding-bottom: 4px;
   padding-right: 6px;
@@ -164,7 +166,7 @@ tooltip label {
 #custom-lock,
 #custom-power {
   color: @red;
-  border-radius: 15px;
+  border-radius: 0;
   font-weight: bolder;
   padding-left: 1px;
 }
@@ -181,7 +183,7 @@ tooltip label {
 
 #custom-weather {
   color: @green;
-  border-radius: 15px;
+  border-radius: 0;
   background-color: transparent;
 }
 

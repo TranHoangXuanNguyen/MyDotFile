@@ -4,7 +4,19 @@ return {
         lazy = false,
         priority = 1000,
         config = function()
-            require("pywal").setup()
+            -- Guard: pywal file may not exist if `wal` hasn't been run yet
+            local wal_file = vim.fn.expand("~/.cache/wal/colors-wal.vim")
+            if vim.fn.filereadable(wal_file) == 1 then
+                local ok, err = pcall(require("pywal").setup)
+                if not ok then
+                    vim.notify("pywal.nvim setup failed: " .. tostring(err), vim.log.levels.WARN)
+                end
+            else
+                vim.notify(
+                    "pywal: ~/.cache/wal/colors-wal.vim not found. Run `wal -i <wallpaper>` first. Falling back to default theme.",
+                    vim.log.levels.WARN
+                )
+            end
             require("ui_theme").init()
         end,
     },

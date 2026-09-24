@@ -1,0 +1,79 @@
+{
+    "com.github.yyoel.ulauncher-pomodoro": {
+        "id": "com.github.yyoel.ulauncher-pomodoro",
+        "url": "https://github.com/yyoel/ulauncher-pomodoro",
+        "updated_at": "2026-09-22T22:44:55.952112",
+        "last_commit": "852d5d23874e50ac7225d30fae970931c4941f79",
+        "last_commit_time": "2026-08-21T12:27:47"
+    },
+    "com.github.mikebarkmin.ulauncher-obsidian": {
+        "id": "com.github.mikebarkmin.ulauncher-obsidian",
+        "url": "https://github.com/mikebarkmin/ulauncher-obsidian",
+        "updated_at": "2026-09-22T22:51:07.907537",
+        "last_commit": "a419cdc5e73453e4b284bb4905448ca60e4a3864",
+        "last_commit_time": "2023-09-12T10:42:25"
+    },
+    "com.github.klaudiosinani.ulauncher-theme-synchronizer": {
+        "id": "com.github.klaudiosinani.ulauncher-theme-synchronizer",
+        "url": "https://github.com/klaudiosinani/ulauncher-theme-synchronizer",
+        "updated_at": "2026-09-22T22:55:06.123928",
+        "last_commit": "3d7d4a77aaebd25a663e2b4d3f0d59725eb4aadc",
+        "last_commit_time": "2026-08-07T23:37:34"
+    },
+    "com.github.ghostdevv.ulauncher-tailscale": {
+        "id": "com.github.ghostdevv.ulauncher-tailscale",
+        "url": "https://github.com/ghostdevv/ulauncher-tailscale",
+        "updated_at": "2026-09-22T22:56:26.627602",
+        "last_commit": "5f4a43359e1df1f0c9b79104e8c006cdfead0903",
+        "last_commit_time": "2025-06-16T05:45:50"
+    },
+    "com.github.cosmincraciun97.port-killer-ulauncher": {
+        "id": "com.github.cosmincraciun97.port-killer-ulauncher",
+        "url": "https://github.com/cosmincraciun97/port-killer-ulauncher",
+        "updated_at": "2026-09-22T22:59:24.578695",
+        "last_commit": "474f8cc6a197b8197279906e4c3be6cd5a9bfb83",
+        "last_commit_time": "2025-09-08T11:19:58"
+    },
+    "com.github.ural89.todolist": {
+        "id": "com.github.ural89.todolist",
+        "url": "https://github.com/ural89/TODOList",
+        "updated_at": "2026-09-22T23:05:01.725109",
+        "last_commit": "91ade8d961f76a8e9d5d05305db2ddd4748cf750",
+        "last_commit_time": "2025-04-27T18:28:32"
+    },
+    "com.github.balazsorban44.ulauncher-jwt-ext": {
+        "id": "com.github.balazsorban44.ulauncher-jwt-ext",
+        "url": "https://github.com/balazsorban44/ulauncher-jwt-ext",
+        "updated_at": "2026-09-22T23:05:27.168980",
+        "last_commit": "8697c5e277961ebac6eab47c955f432a62c41e23",
+        "last_commit_time": "2024-11-15T17:26:38"
+    },
+    "com.github.retiredguitar64.ulauncher-pinyin-search": {
+        "id": "com.github.retiredguitar64.ulauncher-pinyin-search",
+        "url": "https://github.com/RetiredGuitar64/ulauncher-pinyin-search",
+        "updated_at": "2026-09-22T23:08:42.783844",
+        "last_commit": "58bf446e413fa2a98af8bd1085ea69da9e5d9be8",
+        "last_commit_time": "2026-09-13T14:25:55"
+    },
+    "com.github.pbkhrv.ulauncher-notes-nv": {
+        "id": "com.github.pbkhrv.ulauncher-notes-nv",
+        "url": "https://github.com/pbkhrv/ulauncher-notes-nv",
+        "updated_at": "2026-09-22T23:10:20.434469",
+        "last_commit": "16daa6d82bc06f829de39251fe147aae4f6304dc",
+        "last_commit_time": "2022-11-09T04:08:27"
+    },
+    "com.github.kbialek.ulauncher-bitwarden": {
+        "id": "com.github.kbialek.ulauncher-bitwarden",
+        "url": "https://github.com/kbialek/ulauncher-bitwarden",
+        "updated_at": "2026-09-22T23:22:49.821014",
+        "last_commit": "a57acb3394ba2d1aaefc743b5bff819a9eb8d619",
+        "last_commit_time": "2024-05-08T06:35:12"
+    },
+    "com.github.brpaz.ulauncher-docker": {
+        "id": "com.github.brpaz.ulauncher-docker",
+        "url": "https://github.com/brpaz/ulauncher-docker",
+        "updated_at": "2026-09-22T23:24:41.145750",
+        "last_commit": "fdd7f05aa259d9bbe7bab218e9c66068edd1c46e",
+        "last_commit_time": "2022-06-14T10:49:26"
+    }
+}

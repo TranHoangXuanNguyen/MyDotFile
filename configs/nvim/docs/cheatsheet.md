@@ -1,6 +1,6 @@
 # ⌨️ Neovim Cheatsheet
 
-> **Leader** = `Space` | **Xem tất cả keymaps**: `<leader>?` hoặc `<leader>fk`
+> **Leader** = `Space` | **Show all keymaps**: `<leader>?` or `<leader>fk`
 
 ---
 
@@ -8,14 +8,14 @@
 
 | Key | Action |
 |-----|--------|
-| `<leader>ff` | 🔍 Tìm file (Telescope) |
-| `<leader>fo` | 🕐 File gần đây (Recent files) |
-| `<leader>fg` | 🔎 Live grep toàn project |
-| `<leader>fb` | 📋 Danh sách buffers đang mở |
-| `<leader>fh` | ❓ Tìm trong Help |
-| `<leader>fk` | ⌨️ Tìm keymaps |
-| `<leader>fd` | 🚨 Xem Diagnostics |
-| `<leader>fr` | ↩️ Resume picker lần trước |
+| `<leader>ff` | 🔍 Find file |
+| `<leader>fo` | 🕐 Recent files |
+| `<leader>fg` | 🔎 Live grep (search across project) |
+| `<leader>fb` | 📋 List open buffers |
+| `<leader>fh` | ❓ Search help docs |
+| `<leader>fk` | ⌨️ Find keymaps |
+| `<leader>fd` | 🚨 View diagnostics (errors/warnings) |
+| `<leader>fr` | ↩️ Resume last search |
 
 ---
 
@@ -23,13 +23,13 @@
 
 | Key | Action |
 |-----|--------|
-| `<Tab>` | Buffer tiếp theo |
-| `<S-Tab>` | Buffer trước đó |
-| `<leader>1`…`<leader>9` | Nhảy thẳng tới buffer 1–9 |
-| `\db` | Đóng buffer hiện tại |
-| `\dB` | Đóng tất cả buffer khác |
-| `gb` | Đi tới buffer (theo số đếm) |
-| `gB` | Quay lại buffer (theo số đếm) |
+| `<Tab>` | Next buffer |
+| `<S-Tab>` | Previous buffer |
+| `<leader>1` … `<leader>9` | Jump to buffer 1–9 |
+| `\db` | Close current buffer |
+| `\dB` | Close all other buffers |
+| `gb` | Go to buffer (forward by count) |
+| `gB` | Go to buffer (backward by count) |
 
 ---
 
@@ -37,14 +37,14 @@
 
 | Key | Action |
 |-----|--------|
-| `<Left>` | Focus cửa sổ bên trái |
-| `<Right>` | Focus cửa sổ bên phải |
-| `<Up>` | Focus cửa sổ bên trên |
-| `<Down>` | Focus cửa sổ bên dưới |
-| `:vs` | Chia dọc (vertical split) |
-| `:sp` | Chia ngang (horizontal split) |
-| `<C-w>=` | Cân bằng kích thước các split |
-| `<C-w>o` | Đóng tất cả split khác |
+| `<Left>` | Focus left window |
+| `<Right>` | Focus right window |
+| `<Up>` | Focus upper window |
+| `<Down>` | Focus lower window |
+| `:vs` | Vertical split |
+| `:sp` | Horizontal split |
+| `<C-w>=` | Equalize window sizes |
+| `<C-w>o` | Close all other windows |
 
 ---
 
@@ -52,9 +52,9 @@
 
 | Key | Action |
 |-----|--------|
-| `<C-/>` | Bật/tắt terminal (Snacks float) |
-| `<C-\`>` | Mở terminal dạng horizontal split |
-| `<Esc>` | Thoát khỏi terminal mode |
+| `<C-/>` | Toggle terminal (floating) |
+| `` <C-`> `` | Open terminal (horizontal split) |
+| `<Esc>` | Exit terminal mode |
 
 ---
 
@@ -62,23 +62,22 @@
 
 | Key | Action |
 |-----|--------|
-| `<leader>gg` | 🚀 Mở **Lazygit** |
-| `<leader>gl` | 📜 Lazygit Log (cwd) |
-| `<leader>gf` | 📄 Lazygit history file hiện tại |
-| `<leader>gB` | 🌐 Mở file trên GitHub/GitLab |
-| `<leader>gd` | 🔀 Mở Diffview (xem diff đẹp) |
-| `<leader>gx` | ✖️ Đóng Diffview |
-| `<leader>gh` | 📅 Git history file hiện tại |
+| `<leader>gg` | 🚀 Open **Lazygit** |
+| `<leader>gl` | 📜 Lazygit log (cwd) |
+| `<leader>gf` | 📄 Lazygit history for current file |
+| `<leader>gB` | 🌐 Open file on GitHub / GitLab |
+| `<leader>gd` | 🔀 Open Diffview |
+| `<leader>gx` | ✖️ Close Diffview |
+| `<leader>gh` | 📅 Git history for current file |
 | — | — |
-| `]h` / `[h` | Nhảy hunk tiếp/trước |
+| `]h` / `[h` | Jump to next / prev hunk |
 | `<leader>gs` | ✅ Stage hunk |
 | `<leader>gu` | ↩️ Unstage hunk |
-| `<leader>gU` | 🗑️ Undo thay đổi hunk |
-| `<leader>gA` | ✅ Stage toàn bộ file |
-| `<leader>gR` | 🗑️ Reset toàn bộ file |
-| `<leader>gD` | 👁️ Preview diff hunk |
-| `<leader>gB` | 👤 Git blame dòng hiện tại |
-| `<leader>gtb` | 🔁 Toggle inline blame |
+| `<leader>gU` | 🗑️ Undo hunk changes |
+| `<leader>gA` | ✅ Stage entire file |
+| `<leader>gR` | 🗑️ Reset entire file to HEAD |
+| `<leader>gD` | 👁️ Preview hunk diff |
+| `<leader>gtb` | 🔁 Toggle inline git blame |
 | `<leader>gtd` | 🔁 Toggle word diff |
 
 ---
@@ -87,12 +86,12 @@
 
 | Key | Action |
 |-----|--------|
-| `<C-d>` | Chọn từ tiếp theo giống từ dưới cursor (như VS Code) |
-| `<C-S-l>` | Chọn tất cả từ giống nhau trong file |
-| `<C-S-j>` | Thêm cursor xuống dưới |
-| `<C-S-k>` | Thêm cursor lên trên |
-| `<C-LeftMouse>` | Ctrl+Click thêm cursor |
-| `<Esc>` | Thoát multi-cursor |
+| `<C-d>` | Select next occurrence (like VS Code `Ctrl+D`) |
+| `<C-S-l>` | Select all occurrences in file |
+| `<C-S-j>` | Add cursor below |
+| `<C-S-k>` | Add cursor above |
+| `<C-LeftMouse>` | Ctrl+Click to add cursor |
+| `<Esc>` | Exit multi-cursor mode |
 
 ---
 
@@ -100,11 +99,10 @@
 
 | Key | Action |
 |-----|--------|
-| `<leader>w` | Lưu file |
-| `<leader>ws` | Lưu file |
-| `<leader>q` | Lưu và đóng cửa sổ |
-| `<leader>Q` | Force quit tất cả |
-| `<leader>qq` | Quit tất cả |
+| `<leader>w` | Save file |
+| `<leader>q` | Save and close window |
+| `<leader>Q` | Force quit all |
+| `<leader>qq` | Quit all |
 | `ZR` | Restart Neovim |
 
 ---
@@ -113,13 +111,13 @@
 
 | Key | Action |
 |-----|--------|
-| `gd` | Go to Definition |
-| `gr` | Go to References |
+| `gd` | Go to definition |
+| `gr` | Go to references |
 | `K` | Hover documentation |
 | `<leader>rn` | Rename symbol |
 | `<leader>ca` | Code actions |
-| `<leader>fd` | Xem Diagnostics |
-| `]d` / `[d` | Lỗi tiếp/trước |
+| `<leader>fd` | View all diagnostics |
+| `]d` / `[d` | Next / prev diagnostic |
 
 ---
 
@@ -127,13 +125,13 @@
 
 | Key | Action |
 |-----|--------|
-| `<leader>ut` | Mở menu Dark themes |
-| `<leader>uT` | Mở menu Light themes ☀️ |
+| `<leader>ut` | Dark theme menu 🌙 |
+| `<leader>uT` | Light theme menu ☀️ |
 | `<leader>utt` | TokyoNight |
 | `<leader>utc` | Catppuccin Macchiato |
 | `<leader>utr` | Rose Pine |
 | `<leader>utk` | Kanagawa |
-| `<leader>utp` | Pywal (theo wallpaper) |
+| `<leader>utp` | Pywal (follows wallpaper) |
 | `<leader>uT1` | Tokyo Day ☀️ |
 | `<leader>uT2` | Catppuccin Latte ☀️ |
 | `<leader>uT3` | Rose Pine Dawn ☀️ |
@@ -145,13 +143,13 @@
 
 | Key | Action |
 |-----|--------|
-| `<leader>xl` | Mở Lazy (plugin manager) |
-| `<leader>xm` | Mở Mason (LSP installer) |
-| `<leader>z` | Zen Mode |
-| `<leader>s` | Scratch Buffer |
-| `<leader>H` | 📖 Mở cheatsheet này |
-| `\x` | Đóng quickfix / location list |
-| `<F11>` | Bật/tắt spell check |
+| `<leader>xl` | Open Lazy (plugin manager) |
+| `<leader>xm` | Open Mason (LSP installer) |
+| `<leader>z` | Toggle Zen Mode |
+| `<leader>s` | Scratch buffer |
+| `<leader>H` | 📖 Open this cheatsheet |
+| `\x` | Close quickfix / location list |
+| `<F11>` | Toggle spell check |
 
 ---
 
@@ -159,10 +157,10 @@
 
 | Key | Action |
 |-----|--------|
-| `H` | Đầu dòng |
-| `L` | Cuối dòng |
-| `<A-j>` / `<A-k>` | Di chuyển dòng/selection lên xuống |
-| `<leader>p` / `<leader>P` | Paste dưới/trên dòng hiện tại |
-| `<leader>y` | Yank toàn bộ buffer |
-| `<leader><space>` | Xóa trailing whitespace |
-| `;` | Vào command mode (thay `:`) |
+| `H` | Jump to start of line |
+| `L` | Jump to end of line |
+| `<A-j>` / `<A-k>` | Move line / selection down / up |
+| `<leader>p` / `<leader>P` | Paste below / above current line |
+| `<leader>y` | Yank entire buffer |
+| `<leader><space>` | Remove trailing whitespace |
+| `;` | Enter command mode (replaces `:`) |

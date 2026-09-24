@@ -3,11 +3,11 @@
 
 @import '../../.config/waybar/wallust/colors-waybar.css';
 
-@define-color noti-border-color @color12;
-@define-color noti-bg rgba(255, 255, 255, 0.9);
-@define-color noti-bg-alt @background-alt;
-@define-color noti-bg-hover @background;
-@define-color text-color @foreground;
+@define-color noti-border-color #cba6f7;
+@define-color noti-bg          #1e1e2e;
+@define-color noti-bg-alt #313244;
+@define-color noti-bg-hover #45475a;
+@define-color text-color       #cdd6f4;
 
 * {
     font-family: "JetBrains Mono Nerd Font";
@@ -28,6 +28,8 @@
 
 .notification {
 	border-radius: 10px;
+    background: transparent;
+    box-shadow: none;
 }
 
 .notification-content{
@@ -46,7 +48,7 @@
 }
 
 .close-button {
-    background: #f7768e;
+    background: #f38ba8;
     color: @noti-bg;
     text-shadow: none;
     padding: 0;
@@ -57,7 +59,7 @@
 
 .close-button:hover {
     box-shadow: none;
-    background: #f7768e;
+    background: #f38ba8;
     transition: all .15s ease-in-out;
     border: none
 }
@@ -202,7 +204,7 @@
 /* clear button */
 .widget-title>button:hover {
     background: @text-color;
-    color: red;
+    color: #f38ba8;
 }
 
 .widget-dnd {
@@ -221,8 +223,8 @@
 }
 
 .widget-dnd>switch:checked {
-    background: #f7768e;
-    border: 1px solid #f7768e;
+    background: #f38ba8;
+    border: 1px solid #f38ba8;
 }
 
 .widget-dnd>switch slider {
@@ -346,7 +348,18 @@
 }
 
 .critical {
-  background: red;
+  background: #f38ba8;
   padding: 0px;
   border-radius: 10px;
 }
+
+.control-center .notification-row .notification-background .notification .notification-content .image {
+    display: none;
+}
+.image-box {
+    display: none;
+}
+.control-center-empty-icon {
+    display: none;
+}
+

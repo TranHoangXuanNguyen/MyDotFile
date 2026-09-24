@@ -12,8 +12,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 vim.cmd("set number")
+vim.opt.termguicolors = true  -- must be set before plugins load
 require("vim-options")
 require("mappings")
 require("ui_settings").init()
 require("lazy").setup("plugins")
-vim.opt.termguicolors = true
