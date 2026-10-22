@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+# Native Lua sessions use the same action as the keybinding.
+if [[ "${HYPR_CONFIG_FORMAT:-}" == lua ]]; then
+    [[ "${1:-}" == init ]] && exit 0
+    exec /usr/bin/hyprctl eval 'hypr_dots.toggle_blur()'
+fi
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # Script for changing blurs on the fly
 

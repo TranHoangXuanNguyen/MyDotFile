@@ -96,7 +96,7 @@
 },
 
 "clock": {
-	"interval": 1,
+	"interval": 60,
     "format": " {:%I:%M %p}", // AM PM format
     //"format": " {:%H:%M:%S}",// 24H
 	"format-alt": " {:%H:%M   %Y, %d %B, %A}",
@@ -154,7 +154,7 @@
 
 "cpu": {
 	"format": "{usage}% 󰍛",
-	"interval": 1,
+	"interval": 5,
 	"min-length": 5,
 	"format-alt-click": "click",
 	"format-alt": "{icon0}{icon1}{icon2}{icon3} {usage:>2}% 󰍛",
@@ -226,7 +226,7 @@
 },
 
 "memory": {
-	"interval": 10,
+	"interval": 15,
 	"format": "{used:0.1f}G 󰾆",
 	"format-alt": "{percentage}% 󰾆",
 	"format-alt-click": "click",

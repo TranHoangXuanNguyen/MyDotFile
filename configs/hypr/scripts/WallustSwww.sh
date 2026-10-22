@@ -113,6 +113,9 @@ wallust_targets=(
   "$HOME/.config/rofi/wallust/colors-rofi.rasi"
 )
 wait_for_templates "$start_ts" "${wallust_targets[@]}" || true
+if [[ "${HYPR_CONFIG_FORMAT:-}" == lua ]]; then
+  /usr/bin/hyprctl eval 'hypr_dots.apply_colors()' >/dev/null
+fi
 
 # Normalize Ghostty palette syntax in case ':' was used by older files
 if [ -f "$HOME/.config/ghostty/wallust.conf" ]; then

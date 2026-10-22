@@ -28,8 +28,7 @@ done
 # quit ags & relaunch ags
 #ags -q && ags &
 
-# quit quickshell & relaunch quickshell
-pkill qs && qs &
+# Keep the overview instance; it reads the shared wallust color data.
 
 # Wallust refresh (synchronous to ensure colors are ready)
 ${SCRIPTSDIR}/WallustSwww.sh

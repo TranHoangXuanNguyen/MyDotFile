@@ -1,0 +1,2 @@
+-- Add personal startup applications here.
+-- Super+D already launches lookapp; enable another launcher only if needed.

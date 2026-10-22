@@ -16,7 +16,7 @@
 
 // positions generated based on config.ctl //
 
-	"modules-left": ["custom/padd","custom/l_end","wlr/taskbar","mpris","custom/r_end","custom/padd"],
+	"modules-left": ["custom/padd","custom/l_end","wlr/taskbar","custom/r_end","custom/padd"],
 	"modules-center": ["custom/padd","custom/l_end","idle_inhibitor","clock","custom/r_end","custom/padd"],
 	"modules-right": ["custom/padd","custom/l_end","backlight","network","pulseaudio","pulseaudio#microphone","custom/updates","custom/r_end","custom/l_end","privacy","tray","battery","custom/r_end","custom/l_end","custom/wallchange","custom/theme","custom/wbar","custom/cliphist","custom/power","custom/r_end","custom/padd"],
 
@@ -41,21 +41,6 @@
 		}
 	},
 
-    "mpris": {
-        "format": "{player_icon} {dynamic}",
-        "rotate": 0,
-        "format-paused": "{status_icon} <i>{dynamic}</i>",
-        "player-icons": { 
-            "default": "▶",
-            "mpv": "🎵"
-        },
-        "status-icons": {
-            "paused": ""
-        },
-        // "ignored-players": ["firefox"]
-        "max-length": 1000,
-        "interval": 1
-    },
 
     "idle_inhibitor": {
         "format": "{icon}",
@@ -113,7 +98,7 @@
         "format-disconnected": "󰖪 ",
         "tooltip-format-disconnected": "Disconnected",
         "format-alt": "<span foreground='#99ffdd'> {bandwidthDownBytes}</span> <span foreground='#ffcc66'> {bandwidthUpBytes}</span>",
-        "interval": 2,
+        "interval": 5,
     },
 
 "pulseaudio": {

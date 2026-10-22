@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Translate mutations made by old scripts; queries go straight to the real CLI.
+for argument in "$@"; do
+    case "$argument" in
+        dispatch|keyword|--batch)
+            exec python3 "$(dirname -- "${BASH_SOURCE[0]}")/../scripts/hypr_ipc.py" "$@"
+            ;;
+    esac
+done
+exec /usr/bin/hyprctl "$@"

@@ -1,39 +1,26 @@
 #!/usr/bin/env bash
-# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
-# for changing Hyprland Layouts (Master or Dwindle) on the fly
-
-notif="$HOME/.config/swaync/images/ja.png"
-
-LAYOUT=$(hyprctl -j getoption general:layout | jq '.str' | sed 's/"//g')
-
-# Reverse layout value to reuse toggle logic. So layouts don't get swapped initially.
-if [ "$1" = "init" ]; then
-  if [ "$LAYOUT" = "master" ]; then
-    LAYOUT="dwindle"
-  else
-    LAYOUT="master"
-  fi
+# Toggle the layout while keeping J/K as global window cycling shortcuts.
+set -euo pipefail
+if [[ "${HYPR_CONFIG_FORMAT:-}" == lua ]]; then
+    [[ "${1:-}" == init ]] && exit 0
+    exec /usr/bin/hyprctl eval 'hypr_dots.toggle_layout()'
 fi
 
-case $LAYOUT in
-"master")
-  hyprctl keyword general:layout dwindle
-  hyprctl keyword unbind SUPER,J
-  hyprctl keyword unbind SUPER,K
-  hyprctl keyword bind SUPER,J,cyclenext
-  hyprctl keyword bind SUPER,K,cyclenext,prev
-  hyprctl keyword bind SUPER,O,togglesplit
-  notify-send -e -u low -i "$notif" " Dwindle Layout"
-  ;;
-"dwindle")
-  hyprctl keyword general:layout master
-  hyprctl keyword unbind SUPER,J
-  hyprctl keyword unbind SUPER,K
-  hyprctl keyword unbind SUPER,O
-  hyprctl keyword bind SUPER,J,layoutmsg,cyclenext
-  hyprctl keyword bind SUPER,K,layoutmsg,cycleprev
-  notify-send -e -u low -i "$notif" " Master Layout"
-  ;;
-*) ;;
-
-esac
+layout=$(hyprctl -j getoption general:layout | jq -r '.str')
+if [[ "${1:-}" != init ]]; then
+    if [[ "$layout" == master ]]; then layout=dwindle; else layout=master; fi
+    hyprctl keyword general:layout "$layout"
+fi
+hyprctl keyword unbind SUPER,J
+hyprctl keyword unbind SUPER,K
+hyprctl keyword unbind SUPER,O
+hyprctl keyword bind SUPER,J,cyclenext
+hyprctl keyword bind SUPER,K,cyclenext,prev
+if [[ "$layout" == dwindle ]]; then
+    hyprctl keyword bind SUPER,O,layoutmsg,togglesplit
+else
+    hyprctl keyword bind SUPER,O,layoutmsg,swapwithmaster
+fi
+if [[ "${1:-}" != init ]]; then
+    notify-send -e -u low -i "$HOME/.config/swaync/images/ja.png" "$layout layout"
+fi

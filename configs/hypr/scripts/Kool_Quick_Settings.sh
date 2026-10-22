@@ -3,13 +3,9 @@
 # Rofi menu for KooL Hyprland Quick Settings (SUPER SHIFT E)
 # Updated for UserConfigs/configs separation
 
-# Modify this config file for default terminal and EDITOR
-config_file="$HOME/.config/hypr/UserConfigs/01-UserDefaults.conf"
-
-tmp_config_file=$(mktemp)
-sed 's/^\$//g; s/ = /=/g' "$config_file" > "$tmp_config_file"
-source "$tmp_config_file"
-# ##################################### #
+source "$HOME/.config/hypr/scripts/UserDefaults.sh"
+config_ext=conf
+[[ "${HYPR_CONFIG_FORMAT:-}" == lua ]] && config_ext=lua
 
 # variables
 configs="$HOME/.config/hypr/configs"
@@ -211,49 +207,49 @@ EOF
 # Main function to handle menu selection
 main() {
     choice=$(menu | rofi -i -dmenu -config $rofi_theme -mesg "$msg")
-    
+
     # Map choices to corresponding files
     case "$choice" in
-    	"Edit User Defaults") file="$UserConfigs/01-UserDefaults.conf" ;;
-        "Edit User ENV variables") file="$UserConfigs/ENVariables.conf" ;;
-        "Edit User Keybinds") file="$UserConfigs/UserKeybinds.conf" ;;
-        "Edit User Startup Apps (overlay)") file="$UserConfigs/Startup_Apps.conf" ;;
-        "Edit User Window Rules (overlay)") file="$UserConfigs/WindowRules.conf" ;;
-        "Edit User Settings") file="$configs/SystemSettings.conf"; show_info "Editing default settings. Copy to UserConfigs/UserSettings.conf to override." ;;
-        "Edit User Decorations") file="$UserConfigs/UserDecorations.conf" ;;
-        "Edit User Animations") file="$UserConfigs/UserAnimations.conf" ;;
-        "Edit User Laptop Settings") file="$UserConfigs/Laptops.conf" ;;
-        "Edit System Default Keybinds") file="$configs/Keybinds.conf" ;;
-        "Edit System Default Startup Apps") file="$configs/Startup_Apps.conf" ;;
-        "Edit System Default Window Rules") file="$configs/WindowRules.conf" ;;
-        "Edit System Default Settings") file="$configs/SystemSettings.conf" ;;
+        "Edit User Defaults") file="$UserConfigs/01-UserDefaults.$config_ext" ;;
+        "Edit User ENV variables") file="$UserConfigs/ENVariables.$config_ext" ;;
+        "Edit User Keybinds") file="$UserConfigs/UserKeybinds.$config_ext" ;;
+        "Edit User Startup Apps (overlay)") file="$UserConfigs/Startup_Apps.$config_ext" ;;
+        "Edit User Window Rules (overlay)") file="$UserConfigs/WindowRules.$config_ext" ;;
+        "Edit User Settings") file="$UserConfigs/UserSettings.$config_ext" ;;
+        "Edit User Decorations") file="$UserConfigs/UserDecorations.$config_ext" ;;
+        "Edit User Animations") file="$UserConfigs/UserAnimations.$config_ext" ;;
+        "Edit User Laptop Settings") file="$UserConfigs/Laptops.$config_ext" ;;
+        "Edit System Default Keybinds") file="$configs/Keybinds.$config_ext" ;;
+        "Edit System Default Startup Apps") file="$configs/Startup_Apps.$config_ext" ;;
+        "Edit System Default Window Rules") file="$configs/WindowRules.$config_ext" ;;
+        "Edit System Default Settings") file="$configs/SystemSettings.$config_ext" ;;
         "Set SDDM Wallpaper") $scriptsDir/sddm_wallpaper.sh --normal ;;
         "Choose Kitty Terminal Theme") $scriptsDir/Kitty_themes.sh ;;
-        "Configure Monitors (nwg-displays)") 
+        "Configure Monitors (nwg-displays)")
             if ! command -v nwg-displays &>/dev/null; then
                 notify-send -i "$iDIR/error.png" "E-R-R-O-R" "Install nwg-displays first"
                 exit 1
             fi
             nwg-displays ;;
-        "Configure Workspace Rules (nwg-displays)") 
+        "Configure Workspace Rules (nwg-displays)")
             if ! command -v nwg-displays &>/dev/null; then
                 notify-send -i "$iDIR/error.png" "E-R-R-O-R" "Install nwg-displays first"
                 exit 1
             fi
             nwg-displays ;;
-		"GTK Settings (nwg-look)") 
+		"GTK Settings (nwg-look)")
             if ! command -v nwg-look &>/dev/null; then
                 notify-send -i "$iDIR/error.png" "E-R-R-O-R" "Install nwg-look first"
                 exit 1
             fi
             nwg-look ;;
-		"QT Apps Settings (qt6ct)") 
+		"QT Apps Settings (qt6ct)")
             if ! command -v qt6ct &>/dev/null; then
                 notify-send -i "$iDIR/error.png" "E-R-R-O-R" "Install qt6ct first"
                 exit 1
             fi
             qt6ct ;;
-		"QT Apps Settings (qt5ct)") 
+		"QT Apps Settings (qt5ct)")
             if ! command -v qt5ct &>/dev/null; then
                 notify-send -i "$iDIR/error.png" "E-R-R-O-R" "Install qt5ct first"
                 exit 1

@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+# Native Lua sessions use the same action as the keybinding.
+if [[ "${HYPR_CONFIG_FORMAT:-}" == lua ]]; then
+    [[ "${1:-}" == init ]] && exit 0
+    exec /usr/bin/hyprctl eval 'hypr_dots.toggle_game_mode()'
+fi
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # Game Mode. Turning off all animations
 
@@ -17,7 +22,7 @@ if [ "$HYPRGAMEMODE" = 1 ] ; then
         keyword general:border_size 1;\
         keyword decoration:rounding 0"
 	
-	hyprctl keyword "windowrule opacity 1 override 1 override 1 override, ^(.*)$"
+	hyprctl keyword windowrule "match:class .*, opacity 1 override 1 override 1 override"
     swww kill 
     notify-send -e -u low -i "$notif" " Gamemode:" " enabled"
     sleep 0.1

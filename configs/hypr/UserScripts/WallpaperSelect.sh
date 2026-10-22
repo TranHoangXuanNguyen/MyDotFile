@@ -103,6 +103,17 @@ menu() {
 modify_startup_config() {
   local selected_file="$1"
   local startup_config="$HOME/.config/hypr/UserConfigs/Startup_Apps.conf"
+  if [[ "${HYPR_CONFIG_FORMAT:-}" == lua ]]; then
+    python3 - "$selected_file" "$HOME/.config/hypr/UserConfigs/Wallpaper.lua" <<'PYTHON'
+import json, pathlib, sys
+path = sys.argv[1]
+video = pathlib.Path(path).suffix.lower() in ('.mp4', '.mkv', '.mov', '.webm')
+value = json.dumps(path, ensure_ascii=False) if video else 'nil'
+pathlib.Path(sys.argv[2]).write_text('-- Managed by WallpaperSelect.sh\nreturn { video = ' + value + ' }\n')
+PYTHON
+    return
+  fi
+
 
   # Check if it's a live wallpaper (video)
   if [[ "$selected_file" =~ \.(mp4|mkv|mov|webm)$ ]]; then

@@ -8,7 +8,7 @@
 "group/app_drawer": {
 	"orientation": "inherit",
 	"drawer": {
-		"transition-duration": 500,
+		"transition-duration": 160,
 		"children-class": "custom/menu",
 		"transition-left-to-right": true
         },
@@ -35,7 +35,7 @@
 "group/mobo_drawer": {
 	"orientation": "inherit",
 	"drawer": {
-		"transition-duration": 500,
+		"transition-duration": 160,
 		"children-class": "cpu",
 		"transition-left-to-right": true
         },
@@ -57,7 +57,7 @@
 "group/audio": {
 	"orientation": "inherit",
 	"drawer": {
-		"transition-duration": 500,
+		"transition-duration": 160,
 		"children-class": "pulseaudio",
 		"transition-left-to-right": true
         },
@@ -70,7 +70,7 @@
 "group/connections": {
 	"orientation": "inherit",
 	"drawer": {
-		"transition-duration": 500,
+		"transition-duration": 160,
 		"children-class": "bluetooth",
 		"transition-left-to-right": true
         },
@@ -83,7 +83,7 @@
 "group/status": {
 	"orientation": "inherit",
 	"drawer": {
-		"transition-duration": 500,
+		"transition-duration": 160,
 		"children-class": "custom/power",
 		"transition-left-to-right": false
         },
@@ -97,20 +97,19 @@
 "group/notify": {
 	"orientation": "inherit",
 	"drawer": {
-		"transition-duration": 500,
+		"transition-duration": 160,
 		"children-class": "custom/swaync",
 		"transition-left-to-right": false
         },
 	"modules": [
 		"custom/swaync",
-		"custom/dot_update",
 	]
 },
 
 "group/power": {
     "orientation": "inherit",
     "drawer": {
-        "transition-duration": 500,
+        "transition-duration": 160,
         "children-class": "drawer-child",
         "transition-left-to-right": false
       },
@@ -125,7 +124,7 @@
 "group/power#vert": {
      "orientation": "inherit",
      "drawer": {
-        "transition-duration": 300,
+        "transition-duration": 160,
         "children-class": "not-memory",
         "transition-left-to-right": false
        },

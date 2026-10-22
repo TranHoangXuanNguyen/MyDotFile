@@ -12,17 +12,12 @@
 
 DEBUG=false
 SPECIAL_WS="special:scratchpad"
-ADDR_FILE="/tmp/dropdown_terminal_addr"
+ADDR_FILE="${XDG_RUNTIME_DIR:-/tmp}/dropdown-${UID}-${HYPRLAND_INSTANCE_SIGNATURE:-default}.addr"
 
 # Dropdown size and position configuration (percentages)
 WIDTH_PERCENT=65  # Width as percentage of screen width
 HEIGHT_PERCENT=65 # Height as percentage of screen height
 Y_PERCENT=10      # Y position as percentage from top (X is auto-centered)
-
-# Animation settings
-ANIMATION_DURATION=100 # milliseconds
-SLIDE_STEPS=5
-SLIDE_DELAY=5 # milliseconds between steps
 
 # Parse arguments
 if [ "$1" = "-d" ]; then
@@ -35,7 +30,7 @@ TERMINAL_CMD="$1"
 # Debug echo function
 debug_echo() {
   if [ "$DEBUG" = true ]; then
-    echo "$@"
+    echo "$@" >&2
   fi
 }
 
@@ -56,67 +51,9 @@ if [ -z "$TERMINAL_CMD" ]; then
   exit 1
 fi
 
-# Function to get window geometry
-get_window_geometry() {
-  local addr="$1"
-  hyprctl clients -j | jq -r --arg ADDR "$addr" '.[] | select(.address == $ADDR) | "\(.at[0]) \(.at[1]) \(.size[0]) \(.size[1])"'
-}
-
-# Function to animate window slide down (show)
-animate_slide_down() {
-  local addr="$1"
-  local target_x="$2"
-  local target_y="$3"
-  local width="$4"
-  local height="$5"
-
-  debug_echo "Animating slide down for window $addr to position $target_x,$target_y"
-
-  # Start position (above screen)
-  local start_y=$((target_y - height - 50))
-
-  # Calculate step size
-  local step_y=$(((target_y - start_y) / SLIDE_STEPS))
-
-  # Move window to start position instantly (off-screen)
-  hyprctl dispatch movewindowpixel "exact $target_x $start_y,address:$addr" >/dev/null 2>&1
-  sleep 0.05
-
-  # Animate slide down
-  for i in $(seq 1 $SLIDE_STEPS); do
-    local current_y=$((start_y + (step_y * i)))
-    hyprctl dispatch movewindowpixel "exact $target_x $current_y,address:$addr" >/dev/null 2>&1
-    sleep 0.03
-  done
-
-  # Ensure final position is exact
-  hyprctl dispatch movewindowpixel "exact $target_x $target_y,address:$addr" >/dev/null 2>&1
-}
-
-# Function to animate window slide up (hide)
-animate_slide_up() {
-  local addr="$1"
-  local start_x="$2"
-  local start_y="$3"
-  local width="$4"
-  local height="$5"
-
-  debug_echo "Animating slide up for window $addr from position $start_x,$start_y"
-
-  # End position (above screen)
-  local end_y=$((start_y - height - 50))
-
-  # Calculate step size
-  local step_y=$(((start_y - end_y) / SLIDE_STEPS))
-
-  # Animate slide up
-  for i in $(seq 1 $SLIDE_STEPS); do
-    local current_y=$((start_y - (step_y * i)))
-    hyprctl dispatch movewindowpixel "exact $start_x $current_y,address:$addr" >/dev/null 2>&1
-    sleep 0.03
-  done
-
-  debug_echo "Slide up animation completed"
+# One position update; Hyprland owns interpolation and respects game mode.
+position_terminal() {
+  hyprctl dispatch movewindowpixel "exact $2 $3,address:$1" >/dev/null 2>&1
 }
 
 # Function to get monitor info including scale and name of focused monitor
@@ -286,14 +223,14 @@ spawn_terminal() {
     echo "$new_addr $monitor_name" >"$ADDR_FILE"
     debug_echo "Terminal created with address: $new_addr in special workspace on monitor $monitor_name"
 
-    # Small delay to ensure it's properly in special workspace
+    # Allow the newly created window to finish mapping
     sleep 0.2
 
     # Now bring it back with the same animation as subsequent shows
     # Use movetoworkspacesilent to avoid affecting workspace history
     hyprctl dispatch movetoworkspacesilent "$CURRENT_WS,address:$new_addr"
     hyprctl dispatch pin "address:$new_addr"
-    animate_slide_down "$new_addr" "$target_x" "$target_y" "$width" "$height"
+    position_terminal "$new_addr" "$target_x" "$target_y"
 
     return 0
   fi
@@ -325,7 +262,7 @@ if terminal_exists; then
   fi
 
   if terminal_in_special; then
-    debug_echo "Bringing terminal from scratchpad with slide down animation"
+    debug_echo "Bringing terminal from scratchpad with compositor animation"
 
     # Calculate target position
     pos_info=$(calculate_dropdown_position)
@@ -338,36 +275,16 @@ if terminal_exists; then
     hyprctl dispatch movetoworkspacesilent "$CURRENT_WS,address:$TERMINAL_ADDR"
     hyprctl dispatch pin "address:$TERMINAL_ADDR"
 
-    # Set size and animate slide down
+    # Set size and final position; the compositor handles animation
     hyprctl dispatch resizewindowpixel "exact $width $height,address:$TERMINAL_ADDR"
-    animate_slide_down "$TERMINAL_ADDR" "$target_x" "$target_y" "$width" "$height"
+    position_terminal "$TERMINAL_ADDR" "$target_x" "$target_y"
 
     hyprctl dispatch focuswindow "address:$TERMINAL_ADDR"
   else
-    debug_echo "Hiding terminal to scratchpad with slide up animation"
+    debug_echo "Hiding terminal to scratchpad"
 
-    # Get current geometry for animation
-    geometry=$(get_window_geometry "$TERMINAL_ADDR")
-    if [ -n "$geometry" ]; then
-      curr_x=$(echo $geometry | cut -d' ' -f1)
-      curr_y=$(echo $geometry | cut -d' ' -f2)
-      curr_width=$(echo $geometry | cut -d' ' -f3)
-      curr_height=$(echo $geometry | cut -d' ' -f4)
-
-      debug_echo "Current geometry: ${curr_x},${curr_y} ${curr_width}x${curr_height}"
-
-      # Animate slide up first
-      animate_slide_up "$TERMINAL_ADDR" "$curr_x" "$curr_y" "$curr_width" "$curr_height"
-
-      # Small delay then move to special workspace and unpin
-      sleep 0.1
-      hyprctl dispatch pin "address:$TERMINAL_ADDR" # Unpin (toggle)
-      hyprctl dispatch movetoworkspacesilent "$SPECIAL_WS,address:$TERMINAL_ADDR"
-    else
-      debug_echo "Could not get window geometry, moving to scratchpad without animation"
-      hyprctl dispatch pin "address:$TERMINAL_ADDR"
-      hyprctl dispatch movetoworkspacesilent "$SPECIAL_WS,address:$TERMINAL_ADDR"
-    fi
+    hyprctl dispatch pin "address:$TERMINAL_ADDR"
+    hyprctl dispatch movetoworkspacesilent "$SPECIAL_WS,address:$TERMINAL_ADDR"
   fi
 else
   debug_echo "No existing terminal found, creating new one"
