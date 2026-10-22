@@ -5,15 +5,15 @@
 
 ## Dùng bản Lua
 
-Entry point: `~/.config/hypr/hyprland.lua`. Hyprland ưu tiên file này khi khởi động mặc định. Phiên hiện tại đang dùng provider `hyprlang`; cần đăng xuất rồi đăng nhập lại để chuyển provider. Đã chuẩn bị và kiểm tra file, không tự thoát phiên làm việc của bạn.
+Entry point: `~/.config/hypr/hyprland.lua`. Hyprland ưu tiên file này khi khởi động mặc định. Đã kiểm tra phiên đang chạy ngày 22/10/2026: `configProvider: lua`, không có lỗi cấu hình. Các bản cấu hình Hyprland `.conf` cũ đã được xóa theo yêu cầu; chỉnh cấu hình bằng các file Lua.
 
-Nếu trình quản lý phiên có chỉ định `Hyprland -c ...hyprland.conf` hoặc biến `HYPRLAND_CONFIG`, đổi đường dẫn đó thành `...hyprland.lua`. Có thể kiểm tra provider bằng:
+Nếu trình quản lý phiên chỉ định đường dẫn cấu hình, dùng `...hyprland.lua`. Có thể kiểm tra provider bằng:
 
 ```sh
 /usr/bin/hyprctl systeminfo
 ```
 
-Chỉnh các file `UserConfigs/*.lua` sau khi chuyển; các file `.conf` giữ làm bản tương thích và không tự đồng bộ với Lua. Những phần chính:
+Chỉnh các file `UserConfigs/*.lua`. Những phần chính:
 
 | File | Nội dung |
 | --- | --- |
@@ -44,7 +44,7 @@ Chỉnh các file `UserConfigs/*.lua` sau khi chuyển; các file `.conf` giữ 
 - Zoom Lua giới hạn trong khoảng 1–16, tránh zoom-out xuống dưới mức bình thường.
 - Các menu mở đúng file Lua, tìm phím tắt từ `hyprctl binds`, và tìm kiếm web thay đúng placeholder `{}`. Không còn `source`/`eval` cả config Hyprland như shell script.
 
-Các chỉnh sửa về startup, bind trùng, regex/rules, Qt theme và touchpad cũng được áp dụng vào bản `.conf` hiện tại khi phù hợp.
+Các bản `.conf` tương thích trước đây đã được xóa; bản Lua là cấu hình hiện tại.
 
 ## Script và dữ liệu sinh tự động
 
@@ -62,7 +62,6 @@ Chạy từ thư mục `configs`:
 
 ```sh
 Hyprland --verify-config -c "$PWD/hypr/hyprland.lua"
-Hyprland --verify-config -c "$PWD/hypr/hyprland.conf"
 PYTHONDONTWRITEBYTECODE=1 python3 hypr/tests/check-lua.py
 ```
 
@@ -70,14 +69,10 @@ Bộ kiểm tra dùng parser/API thực của Hyprland qua `--verify-config`: n�
 
 Các kiểm tra này chưa chứng minh toàn bộ giao diện và mọi phím phần cứng hoạt động sau đăng nhập. Chưa đo FPS hay điện năng; thay đổi hiệu năng dựa trên việc loại process/cấu hình thừa và giữ blur nhẹ.
 
-## Quay lại `.conf`
+## File cấu hình cũ
 
-Nếu cần quay lại với Hyprland 0.56.2, từ TTY hoặc trình quản lý phiên khởi động rõ đường dẫn:
+Đã xóa 25 file Hyprlang cũ: entry point, cấu hình màn hình/workspace, các module trong `configs` và `UserConfigs`, cùng preset animation và monitor `.conf`. Giữ `hypridle.conf`, các file `hyprlock*.conf`, `application-style.conf` và `wallust/wallust-hyprland.conf` vì chúng vẫn phục vụ ứng dụng hoặc dữ liệu màu hiện tại.
 
-```sh
-Hyprland -c "$HOME/.config/hypr/hyprland.conf"
-```
-
-Hoặc đổi tên `hyprland.lua` thành `hyprland.lua.disabled` trước lần đăng nhập kế tiếp để dùng cơ chế chọn config mặc định. Giữ cả thư mục Lua và scripts khi sử dụng bản Lua; chỉ copy riêng entry point sẽ thiếu các module cần thiết.
+Script đổi layout bàn phím từng cửa sổ đọc `input:kb_layout` trực tiếp từ compositor, không phụ thuộc bản `.conf` cũ. Giữ cả thư mục Lua và scripts khi sử dụng bản Lua; chỉ copy riêng entry point sẽ thiếu các module cần thiết.
 
 Chi tiết tinh chỉnh animation, startup và bản lưu các file đã dọn: [README-Performance.md](README-Performance.md).

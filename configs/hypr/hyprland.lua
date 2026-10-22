@@ -1,5 +1,5 @@
 -- Native Hyprland Lua configuration (0.55+), verified with 0.56.2.
--- See README-Lua.md for the audit, usage and rollback instructions.
+-- See README-Lua.md for the audit and usage instructions.
 require("UserConfigs/01-UserDefaults")
 require("configs/ENVariables")
 require("UserConfigs/ENVariables")

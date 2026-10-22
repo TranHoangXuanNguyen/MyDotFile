@@ -1,6 +1,6 @@
 # Tinh chỉnh cho Intel HD 520 / 60 Hz
 
-Preset **Quick** dùng animation cửa sổ 120–180 ms, workspace 200 ms với quãng trượt ngắn, tắt animation viền. Cấu hình đã áp dụng cho cả `.conf` và Lua; giữ preset cũ tại `animations/End-4.{conf,lua}` để chọn lại bằng menu animation. File đang dùng là `UserConfigs/UserAnimations.{conf,lua}`.
+Preset **Quick** dùng animation cửa sổ 120–180 ms, workspace 200 ms với quãng trượt ngắn, tắt animation viền. Cấu hình áp dụng trong Lua; giữ preset cũ tại `animations/End-4.lua` để chọn lại bằng menu animation. File đang dùng là `UserConfigs/UserAnimations.lua`.
 
 - Blur giảm size từ 6 xuống 4, giữ 1 pass; tắt blur popup và special workspace. Giữ opacity, gaps và shadow hiện có.
 - Dropdown terminal chỉ mở khi bấm phím tắt. Bỏ vòng lặp di chuyển từng frame trong shell; Hyprland xử lý chuyển động. Địa chỉ cửa sổ được lưu riêng theo phiên trong `$XDG_RUNTIME_DIR`.
@@ -23,6 +23,6 @@ Bao gồm backup cũ, 33 ảnh mẫu Fastfetch không được preset nào tham 
 
 ## Kiểm tra và áp dụng
 
-Hai entry point Hyprland đều đã qua `--verify-config`; bộ kiểm tra Lua/API, cú pháp shell và cấu hình Waybar cũng được kiểm tra. Animation và blur được đọc lại từ compositor sau reload. Chưa đo FPS hoặc mức tiêu thụ điện.
+Entry point Lua đã qua `--verify-config`; bộ kiểm tra Lua/API, cú pháp shell và cấu hình Waybar cũng được kiểm tra. Animation và blur được đọc lại từ compositor sau reload. Chưa đo FPS hoặc mức tiêu thụ điện.
 
-Phiên hiện tại vẫn chạy `.conf`; bản Lua dùng ở lần đăng nhập tiếp theo. Các tinh chỉnh hiệu ứng đã có trong cả hai định dạng nên không cần đăng xuất để nhận animation mới.
+Đã kiểm tra phiên đang chạy ngày 22/10/2026: `configProvider: lua`. Các bản cấu hình Hyprland `.conf` cũ đã được xóa; các tinh chỉnh hiệu ứng dùng file Lua.
